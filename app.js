@@ -440,20 +440,33 @@
 
   // ---------- Swatches ----------
   const swatchBox = $("swatches");
-  (window.ROOF_COLOURS || []).forEach((c) => {
-    const b = document.createElement("button");
-    b.className = "swatch";
-    b.title = c.name;
-    b.innerHTML = `<span class="chip" style="background:${c.hex}"></span><span class="label"></span>`;
-    b.querySelector(".label").textContent = c.name;
-    b.addEventListener("click", () => {
-      colour = c;
-      swatchBox.querySelectorAll(".swatch").forEach((s) => s.classList.toggle("active", s === b));
-      $("selectedName").textContent = c.name;
-      // Hide the blue highlight so the colour can be seen.
-      $("showMask").checked = false;
-      scheduleRecompute();
+  (window.ROOF_COLOUR_GROUPS || []).forEach((g) => {
+    const head = document.createElement("h3");
+    head.className = "swatch-group";
+    head.textContent = g.name;
+    if (g.note) {
+      const note = document.createElement("small");
+      note.textContent = g.note;
+      head.appendChild(note);
+    }
+    swatchBox.appendChild(head);
+    g.colours.forEach((c) => {
+      const b = document.createElement("button");
+      b.className = "swatch";
+      b.title = c.name;
+      b.dataset.name = c.name;
+      b.innerHTML = `<span class="chip" style="background:${c.hex}"></span><span class="label"></span>`;
+      b.querySelector(".label").textContent = c.name.replace(/^Colorbond /, "");
+      b.addEventListener("click", () => {
+        colour = c;
+        // The same colour can appear in more than one group; mark them all.
+        swatchBox.querySelectorAll(".swatch").forEach((s) => s.classList.toggle("active", s.dataset.name === c.name));
+        $("selectedName").textContent = c.name;
+        // Hide the blue highlight so the colour can be seen.
+        $("showMask").checked = false;
+        scheduleRecompute();
+      });
+      swatchBox.appendChild(b);
     });
-    swatchBox.appendChild(b);
   });
 })();

@@ -22,10 +22,11 @@ different colours from the Dulux "Love Your Roof" colour card.
 
 ## Editing the colour chart
 
-All colours live in `colours.js` as `{ name, hex }` entries. The names follow
-the Dulux roof colour card, but the hex values are **approximations** and
-should be checked against the card (or Dulux's published colour values) and
-adjusted. Add, remove or reorder entries as needed.
+All colours live in `colours.js`, grouped as on the Dulux card: Cool range,
+Naturals, Greys, Outback, Forest and Colorbond. The hex values were sampled
+from the card's swatches. Colorbond colours are defined once in the
+`COLORBOND` list and reused in each group, so they always match. Add, remove
+or reorder entries as needed.
 
 ## Files
 

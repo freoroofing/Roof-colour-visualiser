@@ -54,7 +54,7 @@ body {
 .row-btns .btn { flex: 1; }
 .check { font-size: 14px; display: flex; gap: 6px; align-items: center; }
 
-.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; }
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; align-items: start; }
 .swatch {
   border: 2px solid transparent; border-radius: 8px; padding: 0; background: none; cursor: pointer;
   font: inherit; text-align: center;
@@ -64,3 +64,11 @@ body {
 .swatch.active { border-color: var(--accent); }
 .selected { font-size: 14px; margin: 10px 0 4px; }
 .note { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+
+.swatches { max-height: 52vh; overflow-y: auto; padding-right: 4px; }
+.swatch-group {
+  grid-column: 1 / -1; margin: 10px 0 0; font-size: 13px; font-weight: 600;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+}
+.swatch-group:first-child { margin-top: 0; }
+.swatch-group small { font-weight: 400; color: var(--muted); font-size: 11px; }
