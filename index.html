@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roof Colour Visualiser</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Roof Colour Visualiser</h1>
+    <label class="btn primary">
+      Upload house photo
+      <input id="fileInput" type="file" accept="image/*" hidden />
+    </label>
+  </header>
+
+  <main class="layout">
+    <section class="stage-wrap">
+      <div id="empty" class="empty">
+        <p><strong>Step 1:</strong> Upload a photo of your house.</p>
+        <p><strong>Step 2:</strong> Mark the roof with the Magic wand, Outline or Brush tool.</p>
+        <p><strong>Step 3:</strong> Pick a colour from the chart.</p>
+      </div>
+      <div id="stage" class="stage" hidden>
+        <canvas id="view"></canvas>
+      </div>
+      <p id="hint" class="hint"></p>
+    </section>
+
+    <aside class="panel">
+      <div class="group">
+        <h2>1. Mark the roof</h2>
+        <div class="tools" role="radiogroup">
+          <button class="tool active" data-tool="wand" title="Click on the roof to select similar colours">Magic wand</button>
+          <button class="tool" data-tool="poly" title="Click around the roof's corners; click the first point (or double-click) to close">Outline</button>
+          <button class="tool" data-tool="brush" title="Paint over the roof">Brush</button>
+          <button class="tool" data-tool="erase" title="Remove parts of the selection">Eraser</button>
+        </div>
+        <label class="row" id="tolRow">Wand tolerance
+          <input id="tolerance" type="range" min="5" max="80" value="28" />
+        </label>
+        <label class="row" id="sizeRow">Brush size
+          <input id="brushSize" type="range" min="4" max="150" value="30" />
+        </label>
+        <div class="row-btns">
+          <button id="undoBtn" class="btn">Undo</button>
+          <button id="clearBtn" class="btn">Clear selection</button>
+        </div>
+        <label class="check"><input id="showMask" type="checkbox" checked /> Highlight selection</label>
+      </div>
+
+      <div class="group">
+        <h2>2. Choose a colour</h2>
+        <div id="swatches" class="swatches"></div>
+        <p class="selected">Selected: <span id="selectedName">none</span></p>
+        <label class="row">Shading strength
+          <input id="contrast" type="range" min="30" max="150" value="100" />
+        </label>
+      </div>
+
+      <div class="group">
+        <h2>3. Compare &amp; save</h2>
+        <button id="compareBtn" class="btn">Hold to see original</button>
+        <button id="downloadBtn" class="btn primary">Download image</button>
+        <p class="note">Colours on screen are a guide only. Always check against a physical colour chip.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script src="colours.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
