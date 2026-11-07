@@ -394,8 +394,8 @@
     $("tolRow").hidden = tool !== "wand";
     $("sizeRow").hidden = !(tool === "brush" || tool === "erase");
     const hints = {
-      wand: "Click on the roof to select areas of similar colour. Click again to add more. Shift-click removes.",
-      poly: "Click each corner of the roof. Click the first point, double-click or press Enter to finish. Esc cancels. Hold Shift when finishing to cut out an area.",
+      wand: "Tap the roof to select areas of similar colour. Tap again to add more. If it grabs too much, Undo and lower the tolerance.",
+      poly: "Tap each corner of the roof, then tap the first point (orange) to finish. Undo removes the last point.",
       brush: "Paint over any parts of the roof that were missed.",
       erase: "Paint over areas that shouldn't be recoloured (gutters, chimneys, sky).",
     };
